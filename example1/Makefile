@@ -13,6 +13,7 @@ example1: $(objects)
 
 example1.o: example1.c
 
+
 %.o: %.c
 	$(CC) -c $(CFLAGS) $(LDFLAGS) -g -o $@ $<
 
