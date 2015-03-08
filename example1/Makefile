@@ -14,7 +14,7 @@ example1: $(objects)
 example1.o: example1.c
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $(LDFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(LDFLAGS) -g -o $@ $<
 
 clean:
 	rm -f $(objects) example1
