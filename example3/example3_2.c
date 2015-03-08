@@ -8,7 +8,7 @@ int main(void)
 	a = -6;
 	b = 8;
 	d = dividebytwo(a) / dividebytwo(b);
-	printf("2a * 2b is %d\n", d);
+	printf("a/2 * b/2 is %d\n", d);
 
 	return 0;
 }
