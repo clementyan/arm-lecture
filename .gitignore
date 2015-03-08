@@ -1,4 +1,10 @@
+*
 *.o
 *.swp
-example1
-example1s
+!Makefile
+!*.c
+!*.s
+!*.txt
+!*.c*
+!cmd
+!.gitignore
