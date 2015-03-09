@@ -11,33 +11,23 @@
 fibonacci:
 	@ ADD/MODIFY CODE BELOW
 	@ PROLOG
-	push {r3, r4, r5, lr}
+	push {r3, r4, r5,r6,r7,lr}
+	mov r3,#-1	@previous
+	mov r4,#1	@result
+	mov r5,#0	@i
+	mov r7,#0	@sum
+.L6:
+	subs r6,r0,r5	@r6=x-i
+	blt .L5		@x-i<0 跳至L5，否則往下執行
+	adds r7,r4,r3	@sum=result+previous
+	mov r3,r4	@previous=resullt
+	mov r4,r7	@result=sum
+	add r5,r5,#1	@i++
+	b .L6		@無條件跳至L6
 
-	@ R4 = R0 - 0 (update flags)
-	@ if(R0 <= 0) goto .L3 (which returns 0)
-
-	@ Compare R4 wtih 1
-	@ If R4 == 1 goto .L4 (which returns 1)
-
-	@ R0 = R4 - 1
-	@ Recursive call to fibonacci with R4 - 1 as parameter
-
-	@ R5 = R0
-	@ R0 = R4 - 2
-	@ Recursive call to fibonacci with R4 - 2 as parameter
-
-	@ R0 = R5 + R0 (update flags)
-
-	pop {r3, r4, r5, pc}		@EPILOG
-
-	@ END CODE MODIFICATION
-.L3:
-	mov r0, #0			@ R0 = 0
-	pop {r3, r4, r5, pc}		@ EPILOG
-
-.L4:
-	mov r0, #1			@ R0 = 1
-	pop {r3, r4, r5, pc}		@ EPILOG
+.L5:
+	mov r0,r4	@r0=sum
+	pop {r3,r4,r5,r6,r7,pc}
 
 	.size fibonacci, .-fibonacci
 	.end
